@@ -3,16 +3,10 @@ import { PricingCalculator } from "@/components/PricingCalculator";
 import { ResourcesSection } from "@/components/ResourcesSection";
 import { EmailSignupSection } from "@/components/EmailSignupSection";
 import { Footer } from "@/components/Footer";
-import { AdBanner } from "@/components/AdBanner";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
-      {/* Header Ad Banner */}
-      <div className="sticky top-0 z-50 bg-background border-b shadow-sm">
-        <AdBanner size="leaderboard" className="py-2" />
-      </div>
-
       {/* Hero Section */}
       <HeroSection />
 
@@ -28,11 +22,6 @@ const Index = () => {
           <PricingCalculator />
         </div>
       </section>
-
-      {/* Side Ad - Desktop Only */}
-      <div className="hidden xl:block fixed right-4 top-1/2 transform -translate-y-1/2 z-10">
-        <AdBanner size="rectangle" />
-      </div>
 
       {/* Resources Section */}
       <ResourcesSection />
