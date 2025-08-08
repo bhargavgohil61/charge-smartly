@@ -8,16 +8,6 @@ export function Footer() {
   return (
     <footer className="bg-secondary text-secondary-foreground pt-16 pb-8">
       <div className="container mx-auto px-4">
-        {/* Ad Space */}
-        <div className="mb-12">
-          <div className="bg-muted/50 border-2 border-dashed border-muted-foreground/20 rounded-lg p-8 text-center">
-            <p className="text-muted-foreground text-sm mb-2">Advertisement</p>
-            <div className="h-24 flex items-center justify-center">
-              <p className="text-muted-foreground">Ad Space - 728x90</p>
-            </div>
-          </div>
-        </div>
-
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 mb-12">
           {/* Brand */}
           <div className="space-y-4">
