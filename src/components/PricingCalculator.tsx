@@ -107,157 +107,124 @@ export function PricingCalculator() {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
-      <div className="grid lg:grid-cols-2 gap-8">
-        {/* Calculator Form */}
-        <Card className="bg-gradient-card shadow-soft">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <DollarSign className="h-6 w-6 text-primary" />
-              Pricing Calculator
-            </CardTitle>
-            <CardDescription>
-              Tell us about your service to get personalized rate suggestions
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-2">
-              <Label htmlFor="jobType">Service Type</Label>
-              <Select value={formData.jobType} onValueChange={(value) => setFormData({...formData, jobType: value})}>
-                <SelectTrigger>
-                  <SelectValue placeholder="What service do you provide?" />
-                </SelectTrigger>
-                <SelectContent>
-                  {jobTypes.map((job) => (
-                    <SelectItem key={job.value} value={job.value}>
-                      {job.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+    <Card className="max-w-2xl mx-auto shadow-lg border-border bg-card">
+      <CardContent className="p-8">
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <Label htmlFor="jobType" className="text-sm font-medium text-foreground">
+              What service do you provide?
+            </Label>
+            <Select value={formData.jobType} onValueChange={(value) => setFormData({...formData, jobType: value})}>
+              <SelectTrigger className="h-12">
+                <SelectValue placeholder="Select your service type" />
+              </SelectTrigger>
+              <SelectContent>
+                {jobTypes.map((job) => (
+                  <SelectItem key={job.value} value={job.value}>
+                    {job.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="experience">Experience Level</Label>
-              <Select value={formData.experience} onValueChange={(value) => setFormData({...formData, experience: value})}>
-                <SelectTrigger>
-                  <SelectValue placeholder="How experienced are you?" />
-                </SelectTrigger>
-                <SelectContent>
-                  {experienceLevels.map((level) => (
-                    <SelectItem key={level.value} value={level.value}>
-                      {level.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+          <div className="space-y-2">
+            <Label htmlFor="experience" className="text-sm font-medium text-foreground">
+              Experience Level
+            </Label>
+            <Select value={formData.experience} onValueChange={(value) => setFormData({...formData, experience: value})}>
+              <SelectTrigger className="h-12">
+                <SelectValue placeholder="Select your experience level" />
+              </SelectTrigger>
+              <SelectContent>
+                {experienceLevels.map((level) => (
+                  <SelectItem key={level.value} value={level.value}>
+                    {level.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="location">Location Type</Label>
-              <Select value={formData.location} onValueChange={(value) => setFormData({...formData, location: value})}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Where do you work?" />
-                </SelectTrigger>
-                <SelectContent>
-                  {locationTypes.map((location) => (
-                    <SelectItem key={location.value} value={location.value}>
-                      {location.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+          <div className="space-y-2">
+            <Label htmlFor="location" className="text-sm font-medium text-foreground">
+              Location Type
+            </Label>
+            <Select value={formData.location} onValueChange={(value) => setFormData({...formData, location: value})}>
+              <SelectTrigger className="h-12">
+                <SelectValue placeholder="Select your location type" />
+              </SelectTrigger>
+              <SelectContent>
+                {locationTypes.map((location) => (
+                  <SelectItem key={location.value} value={location.value}>
+                    {location.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="hours">Expected Hours per Day (Optional)</Label>
-              <Input
-                id="hours"
-                type="number"
-                placeholder="8"
-                value={formData.hours}
-                onChange={(e) => setFormData({...formData, hours: e.target.value})}
-                className="bg-background"
-              />
-            </div>
+          <div className="space-y-2">
+            <Label htmlFor="hours" className="text-sm font-medium text-foreground">
+              Hours per day you want to work
+            </Label>
+            <Input
+              id="hours"
+              type="number"
+              min="1"
+              max="24"
+              value={formData.hours}
+              onChange={(e) => setFormData({...formData, hours: e.target.value})}
+              placeholder="8"
+              className="h-12"
+            />
+          </div>
 
-            <Button 
-              onClick={calculatePricing}
-              disabled={!formData.jobType || !formData.experience || !formData.location || isCalculating}
-              className="w-full"
-              variant="hero"
-              size="lg"
-            >
-              {isCalculating ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                  Calculating...
-                </>
-              ) : (
-                <>
-                  <TrendingUp className="w-4 h-4 mr-2" />
-                  Calculate My Rate
-                </>
-              )}
-            </Button>
-          </CardContent>
-        </Card>
+          <Button 
+            onClick={calculatePricing} 
+            className="w-full h-12 text-base font-medium" 
+            disabled={!formData.jobType || !formData.experience || !formData.location || isCalculating}
+          >
+            {isCalculating ? (
+              <>
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                Calculating...
+              </>
+            ) : (
+              "Calculate My Rate"
+            )}
+          </Button>
 
-        {/* Results */}
-        {result && (
-          <Card className="bg-success-light border-success/20 shadow-soft">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-success">
-                <Star className="h-6 w-6" />
-                Your Pricing Suggestions
-              </CardTitle>
-              <CardDescription>
-                Based on your experience and location
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center p-4 bg-background rounded-lg shadow-sm">
-                  <div className="flex items-center justify-center mb-2">
-                    <Clock className="h-5 w-5 text-primary mr-1" />
-                    <span className="text-sm font-medium text-muted-foreground">Hourly Rate</span>
-                  </div>
-                  <div className="text-2xl font-bold text-success">${result.hourlyRate}</div>
+          {result && (
+            <div className="mt-8 p-6 bg-muted/50 rounded-lg border">
+              <h3 className="text-lg font-semibold text-foreground mb-4">Your Recommended Rates</h3>
+              
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="text-center p-4 bg-background rounded-lg border">
+                  <div className="text-2xl font-bold text-primary">${result.hourlyRate}</div>
+                  <div className="text-sm text-muted-foreground">per hour</div>
                 </div>
-                
-                {formData.hours && (
-                  <div className="text-center p-4 bg-background rounded-lg shadow-sm">
-                    <div className="flex items-center justify-center mb-2">
-                      <MapPin className="h-5 w-5 text-primary mr-1" />
-                      <span className="text-sm font-medium text-muted-foreground">Daily Rate</span>
-                    </div>
-                    <div className="text-2xl font-bold text-success">${result.dailyRate}</div>
-                  </div>
-                )}
+                <div className="text-center p-4 bg-background rounded-lg border">
+                  <div className="text-2xl font-bold text-primary">${result.dailyRate}</div>
+                  <div className="text-sm text-muted-foreground">per day</div>
+                </div>
               </div>
 
               <div className="space-y-3">
-                <h4 className="font-semibold text-foreground">💡 Pro Tips</h4>
+                <h4 className="font-medium text-foreground">Pricing Tips</h4>
                 <ul className="space-y-2">
                   {result.tips.map((tip, index) => (
-                    <li key={index} className="flex items-start gap-2 text-sm text-muted-foreground">
-                      <span className="text-success mt-0.5">•</span>
+                    <li key={index} className="text-sm text-muted-foreground flex items-start">
+                      <span className="text-primary mr-2">•</span>
                       {tip}
                     </li>
                   ))}
                 </ul>
               </div>
-
-              <div className="p-4 bg-warning-light rounded-lg border border-warning/20">
-                <p className="text-sm text-warning-foreground">
-                  <strong>Remember:</strong> These are suggestions based on general market data. 
-                  Adjust based on your unique skills, local competition, and client needs.
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        )}
-      </div>
-    </div>
+            </div>
+          )}
+        </div>
+      </CardContent>
+    </Card>
   );
 }

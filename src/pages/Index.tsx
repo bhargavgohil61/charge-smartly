@@ -1,35 +1,27 @@
-import { HeroSection } from "@/components/HeroSection";
+import { Header } from "@/components/Header";
 import { PricingCalculator } from "@/components/PricingCalculator";
-import { ResourcesSection } from "@/components/ResourcesSection";
-import { EmailSignupSection } from "@/components/EmailSignupSection";
 import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <HeroSection />
-
-      {/* Pricing Calculator Section */}
-      <section id="pricing-calculator" className="py-20 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Calculate Your Perfect Rate</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Get personalized pricing suggestions based on your experience, location, and service type
+    <div className="min-h-screen bg-background">
+      <Header />
+      
+      <main className="container mx-auto px-4 py-12">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold text-foreground mb-4">
+              What to charge
+            </h1>
+            <p className="text-muted-foreground text-lg">
+              Calculate your hourly rate based on your skills and experience
             </p>
           </div>
+          
           <PricingCalculator />
         </div>
-      </section>
+      </main>
 
-      {/* Resources Section */}
-      <ResourcesSection />
-
-      {/* Email Signup Section */}
-      <EmailSignupSection />
-
-      {/* Footer */}
       <Footer />
     </div>
   );
