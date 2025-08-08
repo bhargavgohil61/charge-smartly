@@ -4,17 +4,17 @@ import { Footer } from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-subtle">
       <Header />
       
-      <main className="container mx-auto px-4 py-12">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-foreground mb-4">
+      <main className="container mx-auto px-6 lg:px-8">
+        <div className="max-w-2xl mx-auto pt-16 pb-24">
+          <div className="text-center mb-16 space-y-6">
+            <h1 className="text-display text-foreground leading-tight">
               What to charge
             </h1>
-            <p className="text-muted-foreground text-lg">
-              Calculate your hourly rate based on your skills and experience
+            <p className="text-body text-muted-foreground max-w-lg mx-auto">
+              Calculate your hourly rate based on your skills and experience level
             </p>
           </div>
           

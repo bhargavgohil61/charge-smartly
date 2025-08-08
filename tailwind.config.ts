@@ -119,11 +119,16 @@ export default {
 			backgroundImage: {
 				'gradient-hero': 'var(--gradient-hero)',
 				'gradient-success': 'var(--gradient-success)',
-				'gradient-card': 'var(--gradient-card)'
+				'gradient-card': 'var(--gradient-card)',
+				'gradient-subtle': 'var(--gradient-subtle)'
 			},
 			boxShadow: {
 				'glow': 'var(--shadow-glow)',
-				'soft': 'var(--shadow-md)'
+				'soft': 'var(--shadow-md)',
+				'elegant': 'var(--shadow-elegant)'
+			},
+			fontFamily: {
+				'sans': ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', '"Noto Sans"', 'sans-serif']
 			}
 		}
 	},

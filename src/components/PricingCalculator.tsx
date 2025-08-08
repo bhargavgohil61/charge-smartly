@@ -107,20 +107,20 @@ export function PricingCalculator() {
   };
 
   return (
-    <Card className="max-w-2xl mx-auto shadow-lg border-border bg-card">
-      <CardContent className="p-8">
-        <div className="space-y-6">
-          <div className="space-y-2">
-            <Label htmlFor="jobType" className="text-sm font-medium text-foreground">
+    <Card className="max-w-2xl mx-auto shadow-xl border-border/50 bg-card/95 backdrop-blur">
+      <CardContent className="p-8 lg:p-10">
+        <div className="space-y-8">
+          <div className="space-y-3">
+            <Label htmlFor="jobType" className="text-sm font-semibold text-foreground">
               What service do you provide?
             </Label>
             <Select value={formData.jobType} onValueChange={(value) => setFormData({...formData, jobType: value})}>
-              <SelectTrigger className="h-12">
+              <SelectTrigger className="h-14 text-base border-2 hover:border-primary/50 transition-colors duration-200">
                 <SelectValue placeholder="Select your service type" />
               </SelectTrigger>
               <SelectContent>
                 {jobTypes.map((job) => (
-                  <SelectItem key={job.value} value={job.value}>
+                  <SelectItem key={job.value} value={job.value} className="text-base">
                     {job.label}
                   </SelectItem>
                 ))}
@@ -128,17 +128,17 @@ export function PricingCalculator() {
             </Select>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="experience" className="text-sm font-medium text-foreground">
+          <div className="space-y-3">
+            <Label htmlFor="experience" className="text-sm font-semibold text-foreground">
               Experience Level
             </Label>
             <Select value={formData.experience} onValueChange={(value) => setFormData({...formData, experience: value})}>
-              <SelectTrigger className="h-12">
+              <SelectTrigger className="h-14 text-base border-2 hover:border-primary/50 transition-colors duration-200">
                 <SelectValue placeholder="Select your experience level" />
               </SelectTrigger>
               <SelectContent>
                 {experienceLevels.map((level) => (
-                  <SelectItem key={level.value} value={level.value}>
+                  <SelectItem key={level.value} value={level.value} className="text-base">
                     {level.label}
                   </SelectItem>
                 ))}
@@ -146,17 +146,17 @@ export function PricingCalculator() {
             </Select>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="location" className="text-sm font-medium text-foreground">
+          <div className="space-y-3">
+            <Label htmlFor="location" className="text-sm font-semibold text-foreground">
               Location Type
             </Label>
             <Select value={formData.location} onValueChange={(value) => setFormData({...formData, location: value})}>
-              <SelectTrigger className="h-12">
+              <SelectTrigger className="h-14 text-base border-2 hover:border-primary/50 transition-colors duration-200">
                 <SelectValue placeholder="Select your location type" />
               </SelectTrigger>
               <SelectContent>
                 {locationTypes.map((location) => (
-                  <SelectItem key={location.value} value={location.value}>
+                  <SelectItem key={location.value} value={location.value} className="text-base">
                     {location.label}
                   </SelectItem>
                 ))}
@@ -164,8 +164,8 @@ export function PricingCalculator() {
             </Select>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="hours" className="text-sm font-medium text-foreground">
+          <div className="space-y-3">
+            <Label htmlFor="hours" className="text-sm font-semibold text-foreground">
               Hours per day you want to work
             </Label>
             <Input
@@ -176,19 +176,19 @@ export function PricingCalculator() {
               value={formData.hours}
               onChange={(e) => setFormData({...formData, hours: e.target.value})}
               placeholder="8"
-              className="h-12"
+              className="h-14 text-base border-2 hover:border-primary/50 focus:border-primary transition-colors duration-200"
             />
           </div>
 
           <Button 
             onClick={calculatePricing} 
-            className="w-full h-12 text-base font-medium" 
+            className="w-full h-14 text-base font-semibold shadow-elegant hover:shadow-xl transition-all duration-300" 
             disabled={!formData.jobType || !formData.experience || !formData.location || isCalculating}
           >
             {isCalculating ? (
               <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                Calculating...
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
+                Calculating your rate...
               </>
             ) : (
               "Calculate My Rate"
@@ -196,26 +196,26 @@ export function PricingCalculator() {
           </Button>
 
           {result && (
-            <div className="mt-8 p-6 bg-muted/50 rounded-lg border">
-              <h3 className="text-lg font-semibold text-foreground mb-4">Your Recommended Rates</h3>
+            <div className="mt-10 p-8 bg-gradient-card rounded-xl border-2 border-border/50 shadow-lg">
+              <h3 className="text-subheading text-foreground mb-6">Your Recommended Rates</h3>
               
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="text-center p-4 bg-background rounded-lg border">
-                  <div className="text-2xl font-bold text-primary">${result.hourlyRate}</div>
-                  <div className="text-sm text-muted-foreground">per hour</div>
+              <div className="grid grid-cols-2 gap-6 mb-8">
+                <div className="text-center p-6 bg-background rounded-xl border shadow-sm hover:shadow-md transition-shadow duration-200">
+                  <div className="text-3xl font-bold text-primary mb-1">${result.hourlyRate}</div>
+                  <div className="text-caption">per hour</div>
                 </div>
-                <div className="text-center p-4 bg-background rounded-lg border">
-                  <div className="text-2xl font-bold text-primary">${result.dailyRate}</div>
-                  <div className="text-sm text-muted-foreground">per day</div>
+                <div className="text-center p-6 bg-background rounded-xl border shadow-sm hover:shadow-md transition-shadow duration-200">
+                  <div className="text-3xl font-bold text-primary mb-1">${result.dailyRate}</div>
+                  <div className="text-caption">per day</div>
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <h4 className="font-medium text-foreground">Pricing Tips</h4>
-                <ul className="space-y-2">
+              <div className="space-y-4">
+                <h4 className="font-semibold text-foreground">Professional Pricing Tips</h4>
+                <ul className="space-y-3">
                   {result.tips.map((tip, index) => (
-                    <li key={index} className="text-sm text-muted-foreground flex items-start">
-                      <span className="text-primary mr-2">•</span>
+                    <li key={index} className="text-sm text-muted-foreground flex items-start leading-relaxed">
+                      <span className="text-primary mr-3 mt-1 font-bold">•</span>
                       {tip}
                     </li>
                   ))}
